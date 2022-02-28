@@ -1,13 +1,11 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native-design-utility';
 
+
+var abc = "../";
 const HomeScreen = () => {
-    const { t, i18n } = useTranslation();
     return (
-        <Text>
-        {t("WelcomeText")}
-      </Text>
+        <Text>ABC</Text>
     )
 }
 

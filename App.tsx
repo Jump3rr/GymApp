@@ -6,11 +6,12 @@ import {
   StyleSheet,
   useColorScheme,
 } from 'react-native';
-import { UtilityThemeProvider } from 'react-native-design-utility';
+import { Text, UtilityThemeProvider } from 'react-native-design-utility';
 import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
 import NavigationCon from './src/navigators/NavigationContainer';
+import { useTranslation } from 'react-i18next';
 
 
 const App = () => {
@@ -19,6 +20,8 @@ const App = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  const { t, i18n } = useTranslation()
 
   return (
     <UtilityThemeProvider>
