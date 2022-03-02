@@ -1,5 +1,24 @@
 {
     "translation": {
-        "WelcomeText": "Hello there!"
+        "WelcomeText": "Hello there!",
+        "Calculators": {
+            "BMI": { 
+                "Title": "BMI Calculator",
+                "Description": "BMI Calculator Desc"
+            },
+            "BMR": { 
+                "Title": "BMR Calculator",
+                "Description": "BMR Calculator Desc"
+            },
+            "BF": { 
+                "Title": "Body Fat Calculator",
+                "Description": "Body Fat Calculator Desc"
+            }
+        },
+        "Results": {
+            "LastResults": "Last results",
+            "Records": "My records",
+            "Measurements": "My measurements"
+        }
     }
 }

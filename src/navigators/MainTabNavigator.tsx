@@ -5,6 +5,9 @@ import {Box, Text} from 'react-native-design-utility';
 import { useTheme } from '@react-navigation/native';
 import HomeScreen from '../components/Home';
 import SettingsScreen from '../components/Settings';
+import CalculatorMenu from '../components/calculators/CalculatorMenu';
+import ResultsMain from '../components/Results/ResultsMain';
+
 
 const MainTab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -62,8 +65,8 @@ const MainTabNavigator = () => {
                 screenOptions={{headerShown: false}}
             >
                 <MainTab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: (props) => <Text>abc</Text>}} />
-                <MainTab.Screen name="Library" component={SettingsScreen} options={{tabBarIcon: (props) => <Text>abc</Text>}}/>
-                <MainTab.Screen name="Settings" component={HomeScreen} options={{tabBarIcon: (props) => <Text>abc</Text>}}/>
+                <MainTab.Screen name="Library" component={ResultsMain} options={{tabBarIcon: (props) => <Text>abc</Text>}}/>
+                <MainTab.Screen name="Settings" component={CalculatorMenu} options={{tabBarIcon: (props) => <Text>abc</Text>}}/>
             </MainTab.Group>
         </MainTab.Navigator>
     )
