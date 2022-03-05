@@ -1,5 +1,10 @@
 {
     "translation": {
+        "Logins": {
+            "Register": "Don't have an account yet?\nSign up for free!",
+            "Or": "Or",
+            "GoogleLogin": "Sign in with Google"
+        },
         "WelcomeText": "Hello there!",
         "Calculators": {
             "BMI": { 

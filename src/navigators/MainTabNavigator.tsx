@@ -7,6 +7,7 @@ import HomeScreen from '../components/Home';
 import SettingsScreen from '../components/Settings';
 import CalculatorMenu from '../components/calculators/CalculatorMenu';
 import ResultsMain from '../components/Results/ResultsMain';
+import LoginScreen from '../components/LoginScreen/LoginScreen';
 
 
 const MainTab = createBottomTabNavigator();
@@ -64,7 +65,7 @@ const MainTabNavigator = () => {
             <MainTab.Group
                 screenOptions={{headerShown: false}}
             >
-                <MainTab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: (props) => <Text>abc</Text>}} />
+                <MainTab.Screen name="Home" component={LoginScreen} options={{tabBarIcon: (props) => <Text>abc</Text>}} />
                 <MainTab.Screen name="Library" component={ResultsMain} options={{tabBarIcon: (props) => <Text>abc</Text>}}/>
                 <MainTab.Screen name="Settings" component={CalculatorMenu} options={{tabBarIcon: (props) => <Text>abc</Text>}}/>
             </MainTab.Group>

@@ -1,4 +1,4 @@
-const color = {
+export const color = {
     black: '#212121',
   
     greyDarkest: '#242424',
@@ -45,7 +45,11 @@ const color = {
     greenBottled: '#326647',
 
     pinkDarker: '#ffc0cb',
-    pink: '#fad4db',//'#ffc0cb',
+    pink: '#fad4db',
+    greyDark: '#2b2b2b',
+    grey: '#5c5b5b',
+    greyLight: '#878787',
+    greyLighter: '#b0b0b0'
   };
   
   export const theme = {

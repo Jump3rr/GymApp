@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "239108394404-j2uhkobflvd1sggjbbg1pno7t5lba7bo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gymapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "239108394404-ljok7eu7q4scnc2heh1ab9faep0hkb7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gymapp",
+            "certificate_hash": "6c401cc96fe0c1e213c0cf02b146252504a973f7"
+          }
+        },
+        {
           "client_id": "239108394404-7qo8apdf6bgg3tvn2c64f7uu0rh8qv9s.apps.googleusercontent.com",
           "client_type": 3
         }
