@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { Text } from 'react-native-design-utility';
 import SwitchSelector from 'react-native-switch-selector';
+import MyRecords from './MyRecords';
 
 const ResultsMain = () => {
     const { t, i18n } = useTranslation();
@@ -21,7 +22,7 @@ const ResultsMain = () => {
                 <Text>LAST RESULTS</Text>
             )}
             {activeTab === 'records' && (
-                <Text>Records</Text>
+                <MyRecords />
             )}
             {activeTab === 'measurements' && (
                 <Text>MEASUREMENTS</Text>
