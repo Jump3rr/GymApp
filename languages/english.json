@@ -5,7 +5,14 @@
             "Or": "Or",
             "GoogleLogin": "Sign in with Google"
         },
-        "WelcomeText": "Hello there!",
+        "Menu": {
+            "Calculators": "Calculators",
+            "Results": "My results",
+            "Guides": "Guides",
+            "Trainings": "Training plans",
+            "MyTraining": "My training",
+            "BodyMeasurements": "Body Measurements"
+        },
         "Calculators": {
             "BMI": { 
                 "Title": "BMI Calculator",

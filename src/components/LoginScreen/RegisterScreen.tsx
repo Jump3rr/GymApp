@@ -1,41 +1,30 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Button, Text, KeyboardAvoidingView, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import { color } from '../../constants/theme';
 import Colors from '../../constants/Colors';
-import { useNavigation } from '@react-navigation/native';
 
-const LoginScreen = () => {
-    const navigation = useNavigation();
+const RegisterScreen = () => {
     const { t, i18n } = useTranslation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [validationErrorMessage, setValidationErrorMessage] = useState('');
 
-    GoogleSignin.configure({
-        webClientId: '239108394404-7qo8apdf6bgg3tvn2c64f7uu0rh8qv9s.apps.googleusercontent.com',
-    });
 
-    const signInWithGoogleAsync = async () => {
-        // Get the users ID token
-        const { idToken } = await GoogleSignin.signIn();
-
-        // Create a Google credential with the token
-        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-        // Sign-in the user with the credential
-        return auth().signInWithCredential(googleCredential);
-    }
-    const signInByEmail = () => {
-        auth()
-            .signInWithEmailAndPassword(email, password);
-    }
     const registerByEmail = () => {
-        if(email === '' || password === '') {
-            setErrorMessage('You must fill all fields');
+        if(email === '' || password === '' || confirmPassword === '') {
+            setErrorMessage('You must fill all fields.');
             return;   
+        }
+        else if(password !== confirmPassword) {
+            setErrorMessage("Thoso passwords didn't match. Try again.");
+            return;
+        }
+        else {
+            setErrorMessage('');
         }
         auth()
             .createUserWithEmailAndPassword(email, password)
@@ -44,20 +33,15 @@ const LoginScreen = () => {
             })
             .catch(error => {
                 if (error.code === 'auth/email-already-in-use') {
-                    setErrorMessage('That email address is already in use!');
+                    setValidationErrorMessage('That email address is already in use!');
                 }
 
                 if (error.code === 'auth/invalid-email') {
-                    setErrorMessage('That email address is invalid!');
+                    setValidationErrorMessage('That email address is invalid!');
                 }
 
                 console.error(error);
             });
-    }
-    const logout = () => {
-        auth()
-            .signOut()
-            .then(() => console.log('User signed out!'));
     }
 
     return (
@@ -65,22 +49,19 @@ const LoginScreen = () => {
             <View >
                 <TextInput placeholder='Email' value={email} onChangeText={text => setEmail(text)} style={styles.input} keyboardType='email-address' />
                 <TextInput placeholder='Password' value={password} onChangeText={text => setPassword(text)} style={styles.input} textContentType="password" secureTextEntry={true} />
+                <TextInput placeholder='Confirm Password' value={confirmPassword} onChangeText={text => setConfirmPassword(text)} style={styles.input} textContentType="password" secureTextEntry={true} />
             </View>
             {errorMessage !== '' && (
                 <Text style={styles.errorText}>{errorMessage}</Text>
             )}
+            {validationErrorMessage !== '' && (
+                <Text style={styles.errorText}>{validationErrorMessage}</Text>
+            )}
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={signInByEmail} style={styles.button}>
-                    <Text style={styles.buttonText}>Login</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                    <Text style={styles.registerText}>{t('Logins.Register')}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={logout}>
-                    <Text style={styles.registerText}>Logout</Text>
+                <TouchableOpacity onPress={registerByEmail} style={styles.button}>
+                    <Text style={styles.buttonText}>Register</Text>
                 </TouchableOpacity>
             </View>
-            <Button title={t('Logins.GoogleLogin')} onPress={signInWithGoogleAsync}></Button>
         </KeyboardAvoidingView>
     )
 }
@@ -141,4 +122,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default LoginScreen
+export default RegisterScreen

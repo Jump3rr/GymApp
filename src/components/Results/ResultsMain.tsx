@@ -12,7 +12,6 @@ const ResultsMain = () => {
     const options = [
         {label: t("Results.LastResults"), value: 'lr'},
         {label: t("Results.Records"), value: 'records'},
-        {label: t("Results.Measurements"), value: 'measurements'},
     ]
 
     return (
@@ -23,9 +22,6 @@ const ResultsMain = () => {
             )}
             {activeTab === 'records' && (
                 <MyRecords />
-            )}
-            {activeTab === 'measurements' && (
-                <Text>MEASUREMENTS</Text>
             )}
       </View>
     )

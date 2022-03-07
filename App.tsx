@@ -16,6 +16,8 @@ import NavigationCon from './src/navigators/NavigationContainer';
 import { useTranslation } from 'react-i18next';
 import { theme } from './src/constants/theme';
 import auth from '@react-native-firebase/auth';
+//import LoginScreen from './src/components/LoginScreen/LoginScreen';
+import LoginNavigator from './src/navigators/LoginNavigator';
 import LoginScreen from './src/components/LoginScreen/LoginScreen';
 
 
@@ -40,17 +42,17 @@ const App = () => {
   console.log(user);
   if (!user) {
     return (
-      <UtilityThemeProvider theme={theme}>
-        <View style={{ flex: 1 }}>
-          <LoginScreen />
+        <View style={styles.container}>
+          <ScrollView keyboardShouldPersistTaps='never' contentContainerStyle={{flexGrow: 1}}>
+          <LoginNavigator />
+          </ScrollView>
         </View>
-      </UtilityThemeProvider>
     );
   }
 
   return (
     <UtilityThemeProvider theme={theme}>
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         {/* <Provider store={store}> */}
         <NavigationCon />
         {/* </Provider> */}
@@ -62,7 +64,8 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
+    //paddingTop: StatusBar.currentHeight,
+    
   },
   scrollView: {
     flex: 1,
