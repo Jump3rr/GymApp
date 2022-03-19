@@ -5,6 +5,12 @@
             "Or": "Or",
             "GoogleLogin": "Sign in with Google"
         },
+        "Navigation": {
+            "FirstTab": "Home",
+            "SecondTab": "Training",
+            "ThirdTab": "Results",
+            "FourthTab": "More"
+        },
         "Menu": {
             "Calculators": "Calculators",
             "Results": "My results",
@@ -30,7 +36,10 @@
         "Results": {
             "LastResults": "Last results",
             "Records": "My records",
-            "Measurements": "My measurements"
+            "Measurements": "My measurements",
+            "Edit": "Edit",
+            "Save": "Save",
+            "Close": "Close"
         }
     }
 }

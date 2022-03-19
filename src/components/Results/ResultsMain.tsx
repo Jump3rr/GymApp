@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-design-utility';
 import SwitchSelector from 'react-native-switch-selector';
 import MyRecords from './MyRecords';
@@ -16,7 +16,9 @@ const ResultsMain = () => {
 
     return (
         <View>
-            <SwitchSelector options={options} initial={0} hasPadding onPress={(value:string) => {setActiveTab(value)}} />
+            <View>
+            <SwitchSelector options={options} initial={0} style={styles.switch} hasPadding onPress={(value:string) => {setActiveTab(value)}} />
+            </View>
             {activeTab === 'lr' && (
                 <Text>LAST RESULTS</Text>
             )}
@@ -26,5 +28,11 @@ const ResultsMain = () => {
       </View>
     )
 }
+
+const styles = StyleSheet.create({
+    switch: {
+        flex: 0,
+    }
+})
 
 export default ResultsMain

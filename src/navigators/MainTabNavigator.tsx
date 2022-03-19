@@ -8,6 +8,8 @@ import SettingsScreen from '../components/Settings';
 import CalculatorMenu from '../components/calculators/CalculatorMenu';
 import ResultsMain from '../components/Results/ResultsMain';
 import LoginScreen from '../components/LoginScreen/LoginScreen';
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 
 const MainTab = createBottomTabNavigator();
@@ -17,6 +19,8 @@ const LibraryStack = createStackNavigator();
 const iconSize = 24;
 
 const HomeStackNavigator = () => {
+    const { t, i18n } = useTranslation();
+
     return (
         <HomeStack.Navigator>
             <HomeStack.Group
@@ -65,9 +69,10 @@ const MainTabNavigator = () => {
             <MainTab.Group
                 screenOptions={{headerShown: false}}
             >
-                <MainTab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: (props) => <Text>abc</Text>}} />
-                <MainTab.Screen name="Library" component={ResultsMain} options={{tabBarIcon: (props) => <Text>abc</Text>}}/>
-                <MainTab.Screen name="Settings" component={CalculatorMenu} options={{tabBarIcon: (props) => <Text>abc</Text>}}/>
+                <MainTab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: (props) => <Text>{t('Navigation.FirstTab')}</Text>}} />
+                <MainTab.Screen name="Training" component={ResultsMain} options={{tabBarIcon: (props) => <Text>{t('Navigation.SecondTab')}</Text>}}/>
+                <MainTab.Screen name="Results" component={ResultsMain} options={{tabBarIcon: (props) => <Text>{t('Navigation.ThirdTab')}</Text>}}/>
+                <MainTab.Screen name="More" component={CalculatorMenu} options={{tabBarIcon: (props) => <Text>{t('Navigation.FourthTab')}</Text>}}/>
             </MainTab.Group>
         </MainTab.Navigator>
     )

@@ -16,6 +16,8 @@ import NavigationCon from './src/navigators/NavigationContainer';
 import { useTranslation } from 'react-i18next';
 import { theme } from './src/constants/theme';
 import auth from '@react-native-firebase/auth';
+import store from './src/tools/store';
+import { Provider } from 'react-redux';
 //import LoginScreen from './src/components/LoginScreen/LoginScreen';
 import LoginNavigator from './src/navigators/LoginNavigator';
 import LoginScreen from './src/components/LoginScreen/LoginScreen';
@@ -52,11 +54,13 @@ const App = () => {
 
   return (
     <UtilityThemeProvider theme={theme}>
+            <Provider store={store}>
       <View style={styles.container}>
         {/* <Provider store={store}> */}
         <NavigationCon />
         {/* </Provider> */}
       </View>
+      </Provider>
     </UtilityThemeProvider>
   );
 };

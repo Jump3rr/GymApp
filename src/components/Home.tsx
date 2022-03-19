@@ -4,9 +4,9 @@ import { View, ScrollView, SafeAreaView, FlatList, StyleSheet } from 'react-nati
 import { Box } from 'react-native-design-utility';
 import { useTranslation } from 'react-i18next';
 
-
 const HomeScreen = () => {
   const { t, i18n } = useTranslation();
+
 
   const CalculatorsList = [
     {
