@@ -17,31 +17,39 @@ import { IRecordsReducer } from '../../reducers/recordsReducer';
 const MyRecords = () => {
     const { t, i18n } = useTranslation();
     const [numberOfRecords, setNumberOfRecords] = useState(10);
-    const [isInEditMode, setEditMode] = useState(false);
     const [isAddMode, setAddMode] = useState(false);
-    //const [recordsArr, setRecordsArr] = useState<IResult[]>([]);
-
-    // reference
-    //     .ref('/'+currentUser?.uid+'/records')
-    //     .on('value', snapshot => {
-    //         console.log('User data: ', snapshot.val())
-    //         const arr: IResult[] = Object.values(snapshot.val());
-    //         setRecordsArr(recordsArr => arr);
-    //     })
-
+    const [isEditMode, setEditMode] = useState(false);
+    const [newName, setNewName] = useState('');
+    const [editItem, setEditItem] = useState<IResult>({id: '', name: '', result: 0});
+    const [newRecord, setNewRecord] = useState(0);
     const { recordsList } = useSelector<IState, IRecordsReducer>((globalState) => ({
         ...globalState.records
     }))
 
-    const addData = (name: String, result: number) => {
+    const addData = (name: string, result: number) => {
         const newReference = reference.ref('/' + currentUser?.uid + '/records').push();
         newReference
             .set({
+                id: newReference.key,
                 name: name,
                 result: result,
             })
             .then(() => console.log('pushed'))
-    }
+    };
+
+    const removeData = async (id: string) => {
+        await reference.ref('/' + currentUser?.uid + '/records/' + id).remove();
+    };
+
+    const editData = (id: string, name: string, result: number) => {
+        reference.ref('/' + currentUser?.uid + '/records/' + id)
+            .update({
+                name: name,
+                result: result,
+            })
+            .then(() => console.log('updated'));
+    };
+
     return (
         <View>
             <View>
@@ -49,50 +57,63 @@ const MyRecords = () => {
                 <Text>Ilość pól: {numberOfRecords}</Text>
                 <Text onPress={() => setNumberOfRecords(numberOfRecords+1)}>+</Text> */}
                 <TouchableOpacity onPress={() => setAddMode(true)}><Icons name="pluscircle" size={50} style={styles.iconAdd} /></TouchableOpacity>
-                <TouchableOpacity onPress={() => setEditMode(!isInEditMode)}>
-                    {!isInEditMode && (
-                        <Text>{t("Results.Edit")}</Text>
-                    )}
-                    {isInEditMode && (
-                        <Text>{t("Results.Save")}</Text>
-                    )}
-                </TouchableOpacity>
             </View>
             <View style={styles.mainModal}>
                 <Modal
                     animationType="slide"
                     transparent={true}
-                    visible={isAddMode}
+                    visible={isAddMode || isEditMode}
                     onRequestClose={() => {
-                        setAddMode(!isAddMode);
+                        setAddMode(false);
+                        setEditMode(false);
                     }}
                 >
                     <View style={styles.modal}>
-                        <TouchableOpacity onPress={() => addData('test4', 2345)}>
-                            <Text>Add new</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => setAddMode(!isAddMode)}>
-                            <Text>{t('Results.Close')}</Text>
-                        </TouchableOpacity>
+                        <TextInput placeholder='Name' defaultValue={editItem?.name} style={styles.modalInput} onChangeText={text => setNewName(text)}></TextInput>
+                        <TextInput keyboardType='number-pad' placeholder='Record' defaultValue={editItem?.result.toString()} style={styles.modalInput} onChangeText={number => setNewRecord(Number(number))}></TextInput>
+                        {isEditMode && (
+                            <>
+                                <TouchableOpacity onPress={() => editData(editItem?.id, newName, newRecord)}>
+                                    <Text>Confirm</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => setEditMode(false)}>
+                                    <Text>{t('Results.Close')}</Text>
+                                </TouchableOpacity>
+                            </>
+                        )}
+                        {!isEditMode && (
+                            <>
+                                <TouchableOpacity onPress={() => addData(newName, newRecord)}>
+                                    <Text>Add new</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => setAddMode(false)}>
+                                    <Text>{t('Results.Close')}</Text>
+                                </TouchableOpacity>
+                            </>
+                        )}
                     </View>
                 </Modal>
             </View>
             <View>
                 {recordsList.length > 0 && (
                     recordsList.map((el) => {
-                        return(
-                            <Text>{el?.name}</Text>
+                        return (
+                            <View style={styles.recordElement}>
+                                <View style={styles.recordNameResult}>
+                                    <Text>{el?.name}</Text>
+                                    <Text>{el?.result} KG</Text>
+                                </View>
+                                <View style={styles.recordButtons}>
+                                    <TouchableOpacity onPress={() => {setEditItem(el); setEditMode(true)}}>
+                                        <Text>Edit</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => removeData(el?.id)}>
+                                        <Text>Delete</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
                         )
                     })
-                )}
-                {isInEditMode && (
-                    <View style={styles.editModeContainer}>
-                        <TextInput style={styles.inputsTitle}>Cwiczenie</TextInput>
-                        <TextInput style={styles.inputsResult}>Rekord</TextInput>
-                    </View>
-                )}
-                {!isInEditMode && (
-                    <Text>{numberOfRecords}</Text>
                 )}
             </View>
         </View>
@@ -115,11 +136,33 @@ const styles = StyleSheet.create({
         backgroundColor: color.red,
         width: "25%"
     },
+    modalInput: {
+        backgroundColor: color.grey,
+        //color: color.black,
+        width: '80%',
+    },
     mainModal: {
 
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    recordElement: {
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        flexDirection: 'row'
+    },
+    recordNameResult: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '65%',
+        justifyContent: 'space-between'
+    },
+    recordButtons: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '25%',
+        justifyContent: 'space-between'
     },
     modal: {
         margin: 20,

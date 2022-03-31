@@ -1,4 +1,5 @@
 export interface IResult {
-    name: String,
+    id: string,
+    name: string,
     result: number
 }

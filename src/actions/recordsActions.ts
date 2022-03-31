@@ -9,12 +9,13 @@ export const setRecords = (data: any) => ({
 })
 
 export const getRecords = () => (dispatch: Dispatch<any>) => {
-    let arr: IResult[];
+    let arr: IResult[] = [];
     reference
     .ref('/'+currentUser?.uid+'/records')
     .on('value', snapshot => {
-        console.log('User data: ', snapshot.val())
-        arr = Object.values(snapshot.val());
-        dispatch(setRecords(arr));
+        if(snapshot.val() !== null) {
+            arr = Object?.values(snapshot.val());
+            dispatch(setRecords(arr));
+        }
     })
 }
