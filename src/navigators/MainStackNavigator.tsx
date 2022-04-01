@@ -4,10 +4,12 @@ import MainTabNavigator from "./MainTabNavigator";
 import SettingsScreen from '../components/Settings';
 import { useDispatch } from 'react-redux';
 import { getRecords } from '../actions/recordsActions'
+import { getLastResults } from '../actions/lastResultsActions';
 
 const MainStack = createNativeStackNavigator();
 
 type GetRecords = ReturnType<typeof getRecords>;
+type GetLastResults = ReturnType<typeof getLastResults>;
 
 const MainStackNavigator = () => {
 
@@ -15,6 +17,7 @@ const MainStackNavigator = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch<GetRecords>(getRecords());
+        dispatch<GetLastResults>(getLastResults());
     }, [dispatch]);
 
     return (

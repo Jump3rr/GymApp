@@ -39,7 +39,10 @@
             "Measurements": "My measurements",
             "Edit": "Edit",
             "Save": "Save",
-            "Close": "Close"
+            "Close": "Close",
+            "Name": "Name",
+            "Result": "Result",
+            "Add": "Add new"
         }
     }
 }

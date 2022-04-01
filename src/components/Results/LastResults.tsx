@@ -8,10 +8,10 @@ import { reference, currentUser } from '../../tools/database';
 import { IResult } from '../../interfaces/IResult';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
-import { IRecordsReducer } from '../../reducers/recordsReducer';
 import { styles } from './recordsStyles';
+import { ILastResultsReducer } from '../../reducers/lastResultsReducer';
 
-const MyRecords = () => {
+const LastResults = () => {
     const { t, i18n } = useTranslation();
     const [isAddMode, setAddMode] = useState(false);
     const [isEditMode, setEditMode] = useState(false);
@@ -19,12 +19,12 @@ const MyRecords = () => {
     const tempItem = { id: '', name: '', result: 0 };
     const [editItem, setEditItem] = useState<IResult>(tempItem);
     const [newRecord, setNewRecord] = useState(0);
-    const { recordsList } = useSelector<IState, IRecordsReducer>((globalState) => ({
-        ...globalState.records
+    const { lastResultsList } = useSelector<IState, ILastResultsReducer>((globalState) => ({
+        ...globalState.lastResults
     }))
 
     const addData = (name: string, result: number) => {
-        const newReference = reference.ref('/' + currentUser?.uid + '/records').push();
+        const newReference = reference.ref('/' + currentUser?.uid + '/last_results').push();
         newReference
             .set({
                 id: newReference.key,
@@ -35,11 +35,11 @@ const MyRecords = () => {
     };
 
     const removeData = async (id: string) => {
-        await reference.ref('/' + currentUser?.uid + '/records/' + id).remove();
+        await reference.ref('/' + currentUser?.uid + '/last_results/' + id).remove();
     };
 
     const editData = (id: string, name: string, result: number) => {
-        reference.ref('/' + currentUser?.uid + '/records/' + id)
+        reference.ref('/' + currentUser?.uid + '/last_results/' + id)
             .update({
                 name: name,
                 result: result,
@@ -98,8 +98,8 @@ const MyRecords = () => {
                     <View style={styles.recordButtons}>
                     </View>
                 </View>
-                {recordsList.length > 0 && (
-                    recordsList.map((el) => {
+                {lastResultsList.length > 0 && (
+                    lastResultsList.map((el) => {
                         return (
                             <View style={styles.recordElement}>
                                 <View style={styles.recordNameResult}>
@@ -123,4 +123,4 @@ const MyRecords = () => {
     )
 }
 
-export default MyRecords
+export default LastResults

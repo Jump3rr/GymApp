@@ -1,1 +1,2 @@
 export const GET_RECORDS = "GET_RECORDS";
+export const GET_LAST_RESULTS = "GET_LAST_RESULTS";

@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-design-utility';
 import SwitchSelector from 'react-native-switch-selector';
 import MyRecords from './MyRecords';
+import LastResults from './LastResults';
 
 const ResultsMain = () => {
     const { t, i18n } = useTranslation();
@@ -20,7 +21,7 @@ const ResultsMain = () => {
             <SwitchSelector options={options} initial={0} style={styles.switch} hasPadding onPress={(value:string) => {setActiveTab(value)}} />
             </View>
             {activeTab === 'lr' && (
-                <Text>LAST RESULTS</Text>
+                <LastResults />
             )}
             {activeTab === 'records' && (
                 <MyRecords />
