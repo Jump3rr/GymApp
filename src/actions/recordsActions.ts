@@ -1,7 +1,9 @@
 import { Dispatch } from 'react';
-import { reference, currentUser } from '../tools/database';
-import {IResult} from '../interfaces/IResult';
+import { IResult } from '../interfaces/IResult';
+import { firebase } from '@react-native-firebase/database';
+import { DatabaseRef } from '../tools/database';
 
+const db = new DatabaseRef();
 
 export const setRecords = (data: any) => ({
     type: "GET_RECORDS",
@@ -10,12 +12,12 @@ export const setRecords = (data: any) => ({
 
 export const getRecords = () => (dispatch: Dispatch<any>) => {
     let arr: IResult[] = [];
-    reference
-    .ref('/'+currentUser?.uid+'/records')
-    .on('value', snapshot => {
-        if(snapshot.val() !== null) {
-            arr = Object?.values(snapshot.val());
-            dispatch(setRecords(arr));
-        }
-    })
+    db.reference
+        .ref('/' + db.currentUser?.uid + '/records')
+        .on('value', snapshot => {
+            if (snapshot.val() !== null) {
+                arr = Object?.values(snapshot.val());
+                dispatch(setRecords(arr));
+            }
+        })
 }

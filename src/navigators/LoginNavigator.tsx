@@ -12,7 +12,7 @@ const LoginNavigator = () => {
         <NavigationContainer>
         <LoginStack.Navigator>
             <LoginStack.Group
-                screenOptions={{headerShown: false, presentation: "modal"}}
+                screenOptions={{headerShown: false, presentation: "modal", headerStyle: {backgroundColor: '#ff0'}}}
             >
                 <LoginStack.Screen name="Login" component={LoginScreen} />
                 <LoginStack.Screen name="Register" component={RegisterScreen} />

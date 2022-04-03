@@ -22,7 +22,18 @@
         "Calculators": {
             "BMI": { 
                 "Title": "BMI Calculator",
-                "Description": "BMI Calculator Desc"
+                "Description": "BMI Calculator Desc",
+                "Button": "Calculate",
+                "Height": "Height",
+                "Weight": "Weight",
+                "Result": "Your BMI: ",
+                "Categories": "Categories", 
+                "SeverelyUnderweight": "Severel underweight",
+                "Underweight": "Underweight",
+                "Normal": "Normal",
+                "Overweight": "Overweight",
+                "Obese": "Obese",
+                "ExtremelyObese": "Extremely obese"
             },
             "BMR": { 
                 "Title": "BMR Calculator",
@@ -42,7 +53,13 @@
             "Close": "Close",
             "Name": "Name",
             "Result": "Result",
-            "Add": "Add new"
+            "Add": "Add new",
+            "Confirm": "Confirm"
+        },
+        "Settings": {
+            "Logout": "Log out",
+            "Language": "Language",
+            "About": "About"
         }
     }
 }

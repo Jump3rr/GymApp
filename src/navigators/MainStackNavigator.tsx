@@ -26,7 +26,7 @@ const MainStackNavigator = () => {
                 screenOptions={{headerShown: false, presentation: "modal"}}
             >
             <MainStack.Screen name ="Tabs" component={MainTabNavigator} />
-            <MainStack.Screen name ="Player" component={SettingsScreen} />
+            {/* <MainStack.Screen name ="Player" component={SettingsScreen} /> */}
             </MainStack.Group>
         </MainStack.Navigator>
     )

@@ -1,28 +1,29 @@
 import React from 'react';
-import { Text } from 'react-native-design-utility';
-import { View, ScrollView, SafeAreaView, FlatList, StyleSheet } from 'react-native';
+import { View, ScrollView, SafeAreaView, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Box } from 'react-native-design-utility';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 
 
 const CalculatorMenu = () => {
+    const navigation = useNavigation();
     const { t, i18n } = useTranslation();
 
     const CalculatorsList = [
         {
             id: '1',
             title: t("Calculators.BMR.Title"),
-            navigation: 'Calculator_BMR',
+            navigation: 'CalculatorBMR',
         },
         {
             id: '2',
             title: t("Calculators.BMI.Title"),
-            navigation: 'Calculator_BMI',
+            navigation: 'CalculatorBMI',
         },
         {
             id: '3',
             title: t("Calculators.BF.Title"),
-            navigation: 'Calculator_BF',
+            navigation: 'CalculatorBF',
         },
     ];    
 
@@ -33,9 +34,9 @@ const CalculatorMenu = () => {
                 data={CalculatorsList}
                 numColumns={1}
                 renderItem={({item}) => (
-                    <View style={styles.item}>
+                    <TouchableOpacity style={styles.item} onPress={() => navigation.navigate(item.navigation)}>
                         <Text>{item.title}</Text>
-                    </View>
+                    </TouchableOpacity>
                 )} 
                 keyExtractor={item => item.id}
             />

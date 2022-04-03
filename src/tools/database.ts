@@ -1,6 +1,10 @@
 import { firebase } from '@react-native-firebase/database';
+import { useEffect } from 'react';
 
-export const reference = firebase
+export class DatabaseRef {
+    public get reference(){return firebase
     .app()
     .database('https://gymapp-4662f-default-rtdb.europe-west1.firebasedatabase.app/')
-export const currentUser = firebase.auth().currentUser;
+    }
+    public get currentUser() { return firebase.auth().currentUser}
+}

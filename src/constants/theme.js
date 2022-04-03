@@ -49,7 +49,8 @@ export const color = {
     greyDark: '#2b2b2b',
     grey: '#5c5b5b',
     greyLight: '#878787',
-    greyLighter: '#b0b0b0'
+    greyLighter: '#b0b0b0',
+    lime: '#BCD635'
   };
   
   export const theme = {

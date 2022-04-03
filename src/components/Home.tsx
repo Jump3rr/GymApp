@@ -1,14 +1,27 @@
-import React from 'react';
-import { Text } from 'react-native-design-utility';
-import { View, ScrollView, SafeAreaView, FlatList, StyleSheet } from 'react-native';
+import React, {useEffect} from 'react';
+import { View, ScrollView, SafeAreaView, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Box } from 'react-native-design-utility';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { getRecords } from '../actions/recordsActions'
+import { getLastResults } from '../actions/lastResultsActions';
+import { useNavigation } from '@react-navigation/native';
+import { IItemList } from '../interfaces/IItemList';
+
 
 const HomeScreen = () => {
   const { t, i18n } = useTranslation();
+  const navigation = useNavigation();
+  type GetRecords = ReturnType<typeof getRecords>;
+type GetLastResults = ReturnType<typeof getLastResults>;
+  const dispatch = useDispatch();
+  useEffect(() => {
+      dispatch<GetRecords>(getRecords());
+      dispatch<GetLastResults>(getLastResults());
+  }, [dispatch]);
 
 
-  const CalculatorsList = [
+  const CalculatorsList: IItemList[] = [
     {
       id: '1',
       title: t("Menu.Results"),
@@ -22,7 +35,7 @@ const HomeScreen = () => {
     {
       id: '3',
       title: t("Menu.Calculators"),
-      navigation: 'Calculator_BF',
+      navigation: 'CalculatorMenu',
     },
     {
       id: '4',
@@ -48,9 +61,9 @@ const HomeScreen = () => {
         data={CalculatorsList}
         numColumns={2}
         renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text>{item.title}</Text>
-          </View>
+            <TouchableOpacity onPress={() => navigation.navigate(item.navigation)} style={styles.item}>
+              <Text>{item.title}</Text>
+            </TouchableOpacity>
         )}
         keyExtractor={item => item.id}
       />

@@ -3,7 +3,7 @@ import { color } from '../../constants/theme';
 
 export const styles = StyleSheet.create({
     iconAdd: {
-        color: color.green,
+        color: color.lime,
         paddingHorizontal: 20,
         paddingVertical: 5
     },
@@ -21,18 +21,16 @@ export const styles = StyleSheet.create({
         width: "25%"
     },
     modalInput: {
-        backgroundColor: color.grey,
-        //color: color.black,
+        backgroundColor: color.black,
         width: '80%',
     },
     mainModal: {
-
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
     },
     recordHeader: {
-        backgroundColor: color.grey,
+        backgroundColor: color.black,
         borderRadius: 10,
         marginVertical: 10,
         padding: 5,
@@ -40,17 +38,23 @@ export const styles = StyleSheet.create({
     recordHeaderText: {
         color: color.white,
         fontWeight: 'bold',
+        fontSize: 18
     },
     recordElement: {
         display: 'flex',
         justifyContent: 'space-evenly',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        paddingVertical: 8,
+    },
+    recordText: {
+        fontSize: 16,
+        color: color.white
     },
     recordNameResult: {
         display: 'flex',
         flexDirection: 'row',
         width: '75%',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     recordButtons: {
         display: 'flex',

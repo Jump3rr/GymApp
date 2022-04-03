@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, TextInput, Modal } from 'react-native';
-import { Text } from 'react-native-design-utility';
+import { View, TextInput, Modal, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import Icons from 'react-native-vector-icons/AntDesign';
-import { reference, currentUser } from '../../tools/database';
 import { IResult } from '../../interfaces/IResult';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { styles } from './recordsStyles';
 import { ILastResultsReducer } from '../../reducers/lastResultsReducer';
+import { firebase } from '@react-native-firebase/database';
+import { DatabaseRef } from '../../tools/database';
+
 
 const LastResults = () => {
+    const reference = firebase
+        .app()
+        .database('https://gymapp-4662f-default-rtdb.europe-west1.firebasedatabase.app/')
+    const currentUser = firebase.auth().currentUser;
     const { t, i18n } = useTranslation();
     const [isAddMode, setAddMode] = useState(false);
     const [isEditMode, setEditMode] = useState(false);
@@ -69,9 +74,9 @@ const LastResults = () => {
                         {isEditMode && (
                             <>
                                 <TouchableOpacity onPress={() => editData(editItem?.id, newName, newRecord)}>
-                                    <Text>Confirm</Text>
+                                    <Text>{t('Results.Confirm')}</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => {setEditMode(false); setEditItem(tempItem)}}>
+                                <TouchableOpacity onPress={() => { setEditMode(false); setEditItem(tempItem) }}>
                                     <Text>{t('Results.Close')}</Text>
                                 </TouchableOpacity>
                             </>
@@ -103,8 +108,8 @@ const LastResults = () => {
                         return (
                             <View style={styles.recordElement}>
                                 <View style={styles.recordNameResult}>
-                                    <Text>{el?.name}</Text>
-                                    <Text>{el?.result} KG</Text>
+                                    <Text style={styles.recordText}>{el?.name}</Text>
+                                    <Text style={styles.recordText}>{el?.result} KG</Text>
                                 </View>
                                 <View style={styles.recordButtons}>
                                     <TouchableOpacity onPress={() => { setEditItem(el); setEditMode(true) }}>

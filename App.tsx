@@ -6,15 +6,16 @@ import {
   StyleSheet,
   useColorScheme,
   View,
-  StatusBar
+  StatusBar,
+  Text
 } from 'react-native';
-import { Text, UtilityThemeProvider } from 'react-native-design-utility';
+import { UtilityThemeProvider } from 'react-native-design-utility';
 import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
 import NavigationCon from './src/navigators/NavigationContainer';
 import { useTranslation } from 'react-i18next';
-import { theme } from './src/constants/theme';
+import { color, theme } from './src/constants/theme';
 import auth from '@react-native-firebase/auth';
 import store from './src/tools/store';
 import { Provider } from 'react-redux';
@@ -41,7 +42,6 @@ const App = () => {
 
   if (initializing) return null;
 
-  console.log(user);
   if (!user) {
     return (
         <View style={styles.container}>
@@ -68,12 +68,12 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //paddingTop: StatusBar.currentHeight,
+    backgroundColor: color.grey,
+    color: color.white
     
   },
   scrollView: {
     flex: 1,
-    backgroundColor: 'pink',
   },
   text: {
     fontSize: 42,

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
-import { Text } from 'react-native-design-utility';
+import { StyleSheet, View, Text } from 'react-native';
 import SwitchSelector from 'react-native-switch-selector';
 import MyRecords from './MyRecords';
 import LastResults from './LastResults';
