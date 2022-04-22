@@ -22,6 +22,11 @@ const CalculatorMenu = () => {
         },
         {
             id: '3',
+            title: t("Calculators.Kcal.Title"),
+            navigation: 'CalculatorKcal',
+        },
+        {
+            id: '4',
             title: t("Calculators.BF.Title"),
             navigation: 'CalculatorBF',
         },

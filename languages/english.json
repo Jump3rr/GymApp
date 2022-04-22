@@ -37,11 +37,37 @@
             },
             "BMR": { 
                 "Title": "BMR Calculator",
-                "Description": "BMR Calculator Desc"
+                "Description": "BMR Calculator Desc",
+                "Male": "Male",
+                "Female": "Female",
+                "Age": "Age",
+                "BMR": "Basal Metabolic Rate",
+                "Result": "Your Basal Metabolic Rate is: ",
             },
             "BF": { 
                 "Title": "Body Fat Calculator",
-                "Description": "Body Fat Calculator Desc"
+                "Description": "Body Fat Calculator Desc",
+                "Result": "Body Fat: ",
+                "Neck": "Neck",
+                "Waist": "Waist",
+                "Hip": "Hip",
+                "Essential": "Essential Fat",
+                "Athletes": "Athletes",
+                "Fitness": "Fitness",
+                "Average": "Average",
+                "Obese": "Obese"
+            },
+            "Kcal": { 
+                "Title": "Calorie Calculator",
+                "Description": "Calorie Calculator Desc",
+                "WorkOption1": "Sitting work",
+                "WorkOption2": "Balanced work",
+                "WorkOption3": "Physical work",
+                "ExerciseOption1": "No exercise",
+                "ExerciseOption2": "Exercise 1-3 times/week",
+                "ExerciseOption3": "Exercise 4-5 times/week",
+                "ExerciseOption4": "Exercise 6 or more times/week"
+                
             }
         },
         "Results": {

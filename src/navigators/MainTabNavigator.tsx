@@ -18,6 +18,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import CalculatorBMR from '../components/calculators/CalculatorBMR';
 import CalculatorBMI from '../components/calculators/CalculatorBMI';
 import CalculatorBF from '../components/calculators/CalculatorBF';
+import CalculatorKcal from '../components/calculators/CalculatorKcal';
 
 const MainTab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -55,6 +56,7 @@ const CalculatorStackNavigator = () => {
                 <HomeStack.Screen name="CalculatorBMI" component={CalculatorBMI} />
                 <HomeStack.Screen name="CalculatorBMR" component={CalculatorBMR} />
                 <HomeStack.Screen name="CalculatorBF" component={CalculatorBF} />
+                <HomeStack.Screen name="CalculatorKcal" component={CalculatorKcal} />
             </HomeStack.Group>
         </HomeStack.Navigator>
     )
