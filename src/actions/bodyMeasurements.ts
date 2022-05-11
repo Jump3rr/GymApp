@@ -5,19 +5,19 @@ import { DatabaseRef } from '../tools/database';
 
 const db = new DatabaseRef();
 
-export const setLastResults = (data: any) => ({
-    type: "GET_LAST_RESULTS",
+export const setBodyMeasurements = (data: any) => ({
+    type: "GET_BODY_MEASUREMENTS",
     payload: data,
 })
 
-export const getLastResults = () => (dispatch: Dispatch<any>) => {
+export const getBodyMeasurements = () => (dispatch: Dispatch<any>) => {
     let arr: IResult[] = [];
     db.reference
-        .ref('/' + db.currentUser?.uid + '/last_results')
+        .ref('/' + db.currentUser?.uid + '/body_measurements')
         .on('value', snapshot => {
             if (snapshot.val() !== null) {
                 arr = Object?.values(snapshot.val());
-                dispatch(setLastResults(arr));
+                dispatch(setBodyMeasurements(arr));
             }
         })
 }

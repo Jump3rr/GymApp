@@ -19,6 +19,8 @@ import CalculatorBMR from '../components/calculators/CalculatorBMR';
 import CalculatorBMI from '../components/calculators/CalculatorBMI';
 import CalculatorBF from '../components/calculators/CalculatorBF';
 import CalculatorKcal from '../components/calculators/CalculatorKcal';
+import BodyMeasurements from '../components/Results/BodyMeasurements';
+import MyTraining from '../components/Training/MyTraining';
 
 const MainTab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -36,6 +38,9 @@ const HomeStackNavigator = () => {
             >
                 <HomeStack.Screen name="HomeStack" component={HomeScreen} />
                 <HomeStack.Screen name="CalculatorMenu" component={CalculatorStackNavigator} />
+                <HomeStack.Screen name="BodyMeasurements" component={BodyMeasurements} />
+                <HomeStack.Screen name="Results" component={ResultsMain} />
+                <HomeStack.Screen name="MyTraining" component={MyTraining} />
                 {/* <HomeStack.Screen name="ASMR" options={{title: "Brainsm"}} component={ASMRScreen} />
                 <HomeStack.Screen name="People" options={{title: "Brainsm"}} component={PeopleScreen} />
                 <HomeStack.Screen name="Player" options={{title: "Player"}} component={Player} /> */}

@@ -5,11 +5,15 @@ import SettingsScreen from '../components/Settings';
 import { useDispatch } from 'react-redux';
 import { getRecords } from '../actions/recordsActions'
 import { getLastResults } from '../actions/lastResultsActions';
+import { getBodyMeasurements } from '../actions/bodyMeasurements';
+import { getTrainings } from '../actions/trainingsActions';
 
 const MainStack = createNativeStackNavigator();
 
 type GetRecords = ReturnType<typeof getRecords>;
 type GetLastResults = ReturnType<typeof getLastResults>;
+type GetBodyMeasurements = ReturnType<typeof getBodyMeasurements>;
+type GetTrainings = ReturnType<typeof getTrainings>;
 
 const MainStackNavigator = () => {
 
@@ -18,6 +22,8 @@ const MainStackNavigator = () => {
     useEffect(() => {
         dispatch<GetRecords>(getRecords());
         dispatch<GetLastResults>(getLastResults());
+        dispatch<GetBodyMeasurements>(getBodyMeasurements());
+        dispatch<GetTrainings>(getTrainings());
     }, [dispatch]);
 
     return (

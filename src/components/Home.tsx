@@ -13,7 +13,7 @@ const HomeScreen = () => {
   const { t, i18n } = useTranslation();
   const navigation = useNavigation();
   type GetRecords = ReturnType<typeof getRecords>;
-type GetLastResults = ReturnType<typeof getLastResults>;
+  type GetLastResults = ReturnType<typeof getLastResults>;
   const dispatch = useDispatch();
   useEffect(() => {
       dispatch<GetRecords>(getRecords());
@@ -25,12 +25,12 @@ type GetLastResults = ReturnType<typeof getLastResults>;
     {
       id: '1',
       title: t("Menu.Results"),
-      navigation: 'Calculator_BMR',
+      navigation: 'Results',
     },
     {
       id: '2',
       title: t("Menu.MyTraining"),
-      navigation: 'Calculator_BMI',
+      navigation: 'MyTraining',
     },
     {
       id: '3',
@@ -40,7 +40,7 @@ type GetLastResults = ReturnType<typeof getLastResults>;
     {
       id: '4',
       title: t("Menu.BodyMeasurements"),
-      navigation: 'Calculator_BF',
+      navigation: 'BodyMeasurements',
     },
     {
       id: '5',

@@ -86,6 +86,12 @@
             "Logout": "Log out",
             "Language": "Language",
             "About": "About"
+        },
+        "Trainings": {
+            "NumberOfTrainings": "Number of trainings",
+            "Remove": "Remove training",
+            "Add": "Add training",
+            "Select": "Select training to remove"
         }
     }
 }
